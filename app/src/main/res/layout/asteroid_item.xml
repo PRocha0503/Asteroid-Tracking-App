@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="asteroid"
+            type="com.example.asteroidradar.domain.Asteroid" />
+        <variable
+            name="clickListener"
+            type="com.example.asteroidradar.main.AsteroidListener" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="1.5dp"
+        android:background="@drawable/round_outline"
+        android:onClick="@{()->clickListener.onClick(asteroid)}"
+        >
+
+        <TextView
+            android:id="@+id/assteroidIdTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@{asteroid.codename}"
+            android:fontFamily="@font/inter"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/dateTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="@font/inter_bold"
+            android:text="@{asteroid.closeApproachDate}"
+            android:textColor="@color/red_700"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/assteroidIdTxt"
+            app:layout_constraintTop_toBottomOf="@+id/assteroidIdTxt" />
+
+        <ImageView
+            android:id="@+id/hazardousEmojiImg"
+            android:layout_width="60dp"
+            android:layout_height="0dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/dateTxt"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/assteroidIdTxt"
+            app:layout_constraintVertical_bias="1.0"
+            app:statusIcon="@{asteroid.potentiallyHazardous}"
+            tools:srcCompat="@tools:sample/avatars" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
